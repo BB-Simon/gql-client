@@ -33,8 +33,8 @@ function Home() {
     return (
         <div>
             <div className="flex justify-content-start p-10">
-                {posts && posts.map(post => (
-                    <div className="border p-5 m-5">
+                {posts && posts.map((post, index) => (
+                    <div key={index} className="border p-5 m-5">
                         <h1>{post.title}</h1>
                         <p>{post.description}</p>
                     </div>

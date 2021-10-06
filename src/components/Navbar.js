@@ -1,9 +1,9 @@
-
-/* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment } from 'react'
-import {Link} from 'react-router-dom'
+import React, { Fragment, useContext } from 'react'
+import {Link, useHistory } from 'react-router-dom'
+import {getAuth, signOut} from 'firebase/auth'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import {AuthContext} from '../context/authContext'
 
 const navigation = [
   { name: 'Login', href: '/login', current: true },
@@ -15,6 +15,21 @@ function classNames(...classes) {
 }
 
 const Navbar = () => {
+  const auth = getAuth()
+  const history = useHistory()
+  const {state, dispatch} = useContext(AuthContext)
+  const {user} = state
+
+
+  const logout = () =>{
+    signOut(auth);
+    dispatch({
+      type: "LOGGED_IN_USER",
+      payload: null
+    })
+    history.push('/login')
+  }
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -47,18 +62,21 @@ const Navbar = () => {
                 </Link>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <Link
-                        key={item.name}
-                        to={item.href}
-                        className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          'px-3 py-2 rounded-md text-sm font-medium'
+                    {navigation.map((item, index) => (
+                      <Fragment key={index}>
+                        {!user && (
+                          <Link
+                            to={item.href}
+                            className={classNames(
+                              item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                              'px-3 py-2 rounded-md text-sm font-medium'
+                            )}
+                            aria-current={item.current ? 'page' : undefined}
+                          >
+                            {item.name}
+                          </Link>
                         )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </Link>
+                      </Fragment>
                     ))}
                   </div>
                 </div>
@@ -116,13 +134,18 @@ const Navbar = () => {
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <Link
-                            to="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Sign out
-                          </Link>
-                        )}
+                            <>
+                              {user && (
+                                <Link
+                                  onClick={logout}
+                                  to="/login"
+                                  className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                >
+                                  Log out
+                                </Link>
+                              )}
+                            </>
+                          )}
                       </Menu.Item>
                     </Menu.Items>
                   </Transition>

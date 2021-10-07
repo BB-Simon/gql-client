@@ -27,8 +27,8 @@ function Home() {
       })
   }
 
-  if(loading) return "Loading...";
-  if(error) return "Error:("
+//   if(loading) return "Loading...";
+//   if(error) return "Error:("
 
     return (
         <div>

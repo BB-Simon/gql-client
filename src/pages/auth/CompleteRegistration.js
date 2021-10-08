@@ -61,7 +61,7 @@ function CompleteRegistration() {
 
                 // make api req to save/update user in mongodb
                 createUser()
-                history.push('/')
+                history.push('/dhasboard')
 
             }
 

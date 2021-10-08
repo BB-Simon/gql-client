@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import RightSidebar from '../components/RightSidebar';
 import {AuthContext} from '../context/authContext';
 
 const PrivateRoute = ({children, ...rest}) => {
+    const [openMenu, setOpenMenu] = useState(false)
     const {state} = useContext(AuthContext);
     const [user, setUser] = useState(false);
 
@@ -13,14 +14,18 @@ const PrivateRoute = ({children, ...rest}) => {
         }
     }, [state.user]);
 
+    const handleOpenMenu = () => {
+        setOpenMenu(!openMenu)
+    }
+
     const renderContent = () => (
-        <div className="grid grid-cols-12">
-            <div className="col-span-2">
-                <RightSidebar />
+        <div className="flex">
+            <div>
+                <RightSidebar openMenu={openMenu} handleOpenMenu={handleOpenMenu} />
             </div>
-            <div className="col-span-10">
+            <main onClick={() => setOpenMenu(false)}>
                 <Route {...rest} />
-            </div>
+            </main>
         </div>
     )
 

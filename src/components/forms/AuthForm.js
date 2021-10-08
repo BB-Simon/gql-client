@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import SocialLogins from '../../pages/auth/SocialLogins'
 
 function AuthForm({
@@ -11,7 +12,8 @@ function AuthForm({
     handleOnSubmit,
     signInWithGoogle,
     showPasswordInput = false,
-    showSocialLogins = false
+    showSocialLogins = false,
+    showForgotPasswordLink = false
 }) {
     return (
         <form onSubmit={handleOnSubmit} className="shadow overflow-hidden sm:rounded-md">
@@ -43,6 +45,11 @@ function AuthForm({
                         value={password}
                         className="mt-1 p-2 block w-full sm:text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-transparent"
                     />
+                    {showForgotPasswordLink ? (
+                        <div className="mt-4 text-red-300">
+                            <Link  to="/password/forgot">Forgot Password</Link>
+                        </div>
+                    ) : null}
                 </div>
             ): null}
             <div className="px-4 py-3 bg-gray-50 sm:px-6">

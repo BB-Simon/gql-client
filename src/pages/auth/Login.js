@@ -1,11 +1,9 @@
 import React, { useState, useContext } from 'react';
-import {Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import {AuthContext} from '../../context/authContext';
 import {toast }from 'react-toastify'
 import {gql, useMutation} from '@apollo/client'
-
-import SocialLogins from './SocialLogins';
 import AuthForm from '../../components/forms/AuthForm';
 
 
@@ -46,7 +44,7 @@ function Login() {
       // send user info to our mongodb server to either update/create
       createUser()
       // redirect
-      history.push('/');
+      history.push('/dhasboard');
       setLoading(false);
       
     } catch (error) {
@@ -70,7 +68,7 @@ function Login() {
         // send user info to our mongodb server to either update/create
         createUser()
         // redirect
-        history.push('/');
+        history.push('/dhasboard');
         
       } catch (error) {
         console.log(error);
@@ -92,6 +90,7 @@ function Login() {
               signInWithGoogle={signInWithGoogle}
               showPasswordInput={true}
               showSocialLogins={true}
+              showForgotPasswordLink={true}
             /> 
         </div>
     </div>

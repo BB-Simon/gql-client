@@ -23,7 +23,7 @@ const PrivateRoute = ({children, ...rest}) => {
             <div>
                 <RightSidebar openMenu={openMenu} handleOpenMenu={handleOpenMenu} />
             </div>
-            <main onClick={() => setOpenMenu(false)}>
+            <main className="w-full" onClick={() => setOpenMenu(false)}>
                 <Route {...rest} />
             </main>
         </div>

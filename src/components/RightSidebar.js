@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom'
 import {motion} from 'framer-motion';
 import {CgProfile} from 'react-icons/cg'
@@ -32,7 +32,7 @@ const menuItems = [
 function RightSidebar({openMenu, handleOpenMenu}) {
     
     return (
-        <div class="flex w-full " style={{height: "calc(100vh - 64px)"}}>
+        <div className="flex w-full " style={{height: "calc(100vh - 64px)"}}>
             {/* Start SideBar */}
             <aside className="w-20 relative z-20 flex-shrink-0  px-2 overflow-y-auto bg-indigo-600 ">
                 <div className="mb-6">
@@ -76,7 +76,7 @@ function RightSidebar({openMenu, handleOpenMenu}) {
                 <div className="mb-6">
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 mt-6">
                         {menuItems.map(({title, Icon, path}) => (
-                            <Link to={path} className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
+                            <Link to={path} key={path} className="p-2 flex flex-col items-center bg-white rounded-md justify-center shadow-xl cursor-pointer">
                                 <div className="rounded-full p-2 bg-indigo-200 flex flex-col items-center">
                                     <Icon className="text-indigo-600" />
                                 </div>

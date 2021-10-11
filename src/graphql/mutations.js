@@ -17,3 +17,18 @@ export const CREATE_POST = gql`
 	}
 	${POST_DATA}
 `;
+export const UPDATE_POST = gql`
+	mutation updatePost($input: UpdatePostInput!) {
+		updatePost(input: $input) {
+			...postData
+		}
+	}
+	${POST_DATA}
+`;
+export const DELETE_POST = gql`
+	mutation deletePost($postId: String!) {
+		deletePost(postId: $postId) {
+			_id
+		}
+	}
+`;

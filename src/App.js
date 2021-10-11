@@ -11,14 +11,12 @@ import { setContext } from "@apollo/client/link/context";
 
 import firebaseConfig from "./firebase";
 import Navbar from "./components/Navbar";
-import Forgotpassword from "./pages/auth/ForgotPassword";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Home from "./pages/Home";
 import CompleteRegistration from "./pages/auth/CompleteRegistration";
 import { AuthContext } from "./context/authContext";
 import { useContext } from "react";
-import ResetPassword from "./pages/auth/ResetPassword";
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 import UpdatePassword from "./pages/auth/UpdatePassword";
@@ -28,6 +26,8 @@ import Dhasboard from "./pages/dhasboard/Dhasboard";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import Users from "./pages/Users";
 import SingleUser from "./pages/SingleUser";
+import UpdatePost from "./pages/post/UpdatePost";
+import SinglePost from "./pages/post/SinglePost";
 
 function App() {
 	const {
@@ -80,6 +80,12 @@ function App() {
 				/>
 				<PrivateRoute exact path='/profile' component={Profile} />
 				<PrivateRoute exact path='/post/create' component={Post} />
+				<PrivateRoute
+					exact
+					path='/post/update/:postid'
+					component={UpdatePost}
+				/>
+				<Route exact path='/post/:postid' component={SinglePost} />
 			</Switch>
 		</ApolloProvider>
 	);

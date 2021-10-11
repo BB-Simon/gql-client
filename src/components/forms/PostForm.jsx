@@ -1,7 +1,9 @@
 import React from "react";
 import UploadImage from "../UploadImage";
 
-function CreatePostForm({
+function PostForm({
+	title,
+	btnTitle,
 	values,
 	loading,
 	setValues,
@@ -15,7 +17,7 @@ function CreatePostForm({
 			onSubmit={handleOnSubmit}
 			className='shadow overflow-hidden sm:rounded-md'>
 			<h1 className='p-6 text-2xl font-bold'>
-				{loading ? "Loading...!" : "Create New Post"}
+				{loading ? "Loading...!" : `${title}`}
 			</h1>
 			<div className='px-6 pb-6'>
 				<UploadImage
@@ -47,11 +49,11 @@ function CreatePostForm({
 					type='submit'
 					disabled={loading}
 					className='inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'>
-					Create
+					{btnTitle}
 				</button>
 			</div>
 		</form>
 	);
 }
 
-export default CreatePostForm;
+export default PostForm;

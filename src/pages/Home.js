@@ -27,12 +27,11 @@ function Home() {
 		});
 	};
 
-	console.log("posts", posts);
-
 	return (
 		<div>
 			<div className='grid grid-cols-3 gap-4 p-10'>
-				{posts && posts.map((post, index) => <PostCard post={post} />)}
+				{posts &&
+					posts.map((post, index) => <PostCard key={index} post={post} />)}
 			</div>
 			<div className='p-10'>
 				<button

@@ -10,8 +10,8 @@ export const PROFILE = gql`
 	${USER_INFO}
 `;
 export const ALL_POSTS = gql`
-	query {
-		allPosts {
+	query allPosts($page: Int) {
+		allPosts(page: $page) {
 			...postData
 		}
 	}
@@ -51,3 +51,9 @@ export const SINGLE_USER = gql`
 	}
 	${USER_INFO}
 `;
+
+export const TOTAL_POSTS = gql`
+	query {
+		totalPosts
+	}
+`

@@ -28,6 +28,7 @@ import Users from "./pages/Users";
 import SingleUser from "./pages/SingleUser";
 import UpdatePost from "./pages/post/UpdatePost";
 import SinglePost from "./pages/post/SinglePost";
+import SearchResult from "./pages/SearchResult";
 
 function App() {
 	const {
@@ -86,6 +87,7 @@ function App() {
 					component={UpdatePost}
 				/>
 				<Route exact path='/post/:postid' component={SinglePost} />
+				<Route exact path='/search/:query' component={SearchResult} />
 			</Switch>
 		</ApolloProvider>
 	);

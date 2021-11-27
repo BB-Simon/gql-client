@@ -61,6 +61,7 @@ function Home() {
 				/>
 			</div>
 			<div className='p-10'>
+				<p>Small Chnage will go here</p>
 				<div>{JSON.stringify(state.user)}</div>
 				<button
 					onClick={updateUserName}
